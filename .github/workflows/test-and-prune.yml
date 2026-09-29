@@ -1,0 +1,20 @@
+name: Cache Sentinel
+on:
+  pull_request:
+    types: [closed]
+  schedule:
+    - cron: '17 3 * * 0'
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run sentinel
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          prune-on-pr-close: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}

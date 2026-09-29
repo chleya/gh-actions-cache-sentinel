@@ -1,0 +1,17 @@
+name: GitHub Actions Cache Sentinel
+description: Prune orphaned PR caches and publish cache ROI health metrics.
+author: open-source
+inputs:
+  github-token:
+    description: Token with actions:write permission.
+    required: true
+  prune-on-pr-close:
+    description: Delete caches associated with the closed PR.
+    required: false
+    default: 'true'
+runs:
+  using: node20
+  main: src/index.js
+branding:
+  icon: trash-2
+  color: green
