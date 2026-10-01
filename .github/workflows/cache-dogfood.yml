@@ -1,0 +1,18 @@
+name: Cache Sentinel Self-Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-cache:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Cache Sentinel
+        uses: chleya/gh-actions-cache-sentinel@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          prune-on-pr-close: 'true'
