@@ -9,10 +9,11 @@ jobs:
     permissions:
       actions: write
       contents: read
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Run Cache Sentinel
         uses: chleya/gh-actions-cache-sentinel@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          prune-on-pr-close: 'true'
