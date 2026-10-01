@@ -6,13 +6,8 @@ const core = {
   warning: console.warn
 };
 
-const token = core.getInput('github-token') || process.env.GITHUB_TOKEN || process.env.GITHUB_TOKEN;
+const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
 const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
-
-core.info(`Debug: owner=${owner} repo=${repo}`);
-core.info(`Debug: token length=${token ? token.length : 0}`);
-core.info(`Debug: INPUT_GITHUB_TOKEN=${process.env.INPUT_GITHUB_TOKEN ? 'set(' + process.env.INPUT_GITHUB_TOKEN.length + ')' : 'unset'}`);
-core.info(`Debug: GITHUB_TOKEN=${process.env.GITHUB_TOKEN ? 'set(' + process.env.GITHUB_TOKEN.length + ')' : 'unset'}`);
 
 if (!token || !owner || !repo) {
   core.setFailed('github-token and GITHUB_REPOSITORY are required');
